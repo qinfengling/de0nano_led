@@ -24,4 +24,10 @@ $(DESIGN_NAME).qpf: basics.tcl basics.v
 
 clean:
 	@rm -rf db incremental_db output_files
-	@rm -rf *.qpf *.qsf *.summary *.rpt *.qdf
+	@rm -rf *.qpf *.qsf *.summary *.rpt *.qdf *.jic *.map
+
+$(DESIGN_NAME).jic: build
+	quartus_cpf -c $(DESIGN_NAME).cof
+
+pgm_flash: $(DESIGN_NAME).jic
+	quartus_pgm --mode=jtag -o pi\;$(DESIGN_NAME).jic
