@@ -28,6 +28,7 @@ module basics(
   always @(posedge CLOCK_50) begin
     if (reset == 1'b1) begin
       count <= 0;
+      disp <= 0;
     end
     else begin
       count <= count + 1;
